@@ -8,8 +8,8 @@ import copy
 #
 # USer, passwords and method to connect to eAPI on switches
 #
-EAPI_USERNAME = 'df'
-EAPI_PASSWORD = 'pzkpw51B'
+EAPI_USERNAME = 'myuser'
+EAPI_PASSWORD = 'mypass'
 EAPI_ENABLE_PASSWORD = ''
 EAPI_METHOD = 'http'
 
