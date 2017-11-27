@@ -33,7 +33,7 @@ for ip in iplist:
  response = myswitch.runCmds(1, ["configure", "interface vxlan1", "vxlan vrf "+tenant+" vni "+vni] )
 
 # Configure CE facing interface
-response = myswitch.runCmds(1, ["configure", "interface "+interface, "no switchport", "description "+tenant, "vrf forwarding "+tenant, "ip address "+ipaddress] )
+ response = myswitch.runCmds(1, ["configure", "interface "+interface, "no switchport", "description "+tenant, "vrf forwarding "+tenant, "ip address "+ipaddress] )
   
 # Create MAC VRF and IP VRF in BGP
  result = myswitch.runCmds(1, ["enable", "show ip bgp summary"] )
