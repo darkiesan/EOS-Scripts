@@ -33,7 +33,7 @@ if opts.ipaddress != "0.0.0.0":
 
 interface = opts.interface
 trunk = opts.trunk
-irboption = opt.irb
+irboption = opts.irb
 
 for ip in iplist:
  myswitch = Server( '%s://%s:%s@%s/command-api' % ( METHOD, USER, PASS, ip ) )
