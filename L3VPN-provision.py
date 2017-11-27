@@ -10,7 +10,7 @@ METHOD = "http"
 usage = 'usage: %prog [options]'
 op = optparse.OptionParser(usage=usage)
 op.add_option( '-t', '--tenant', dest='tenant', action='store', help='Tentant for EVPN and routing', type='string')
-op.add_option( '-v', '--vni', dest='vlan', action='store', help='VLAN for VNI and MAC VRF', type='string')
+op.add_option( '-v', '--vni', dest='vni', action='store', help='VLAN for VNI and MAC VRF', type='string')
 op.add_option( '-i', '--iplist', dest='iplist', action='store', help='List of IP addresses of switches', type='string')
 op.add_option( '-a', '--ip-address', dest='ipaddress', action='store', help='IP address for IRB/SVI if applicable', type='string', default="0.0.0.0")
 op.add_option( '-n', '--interface', dest='interface', action='store', help='Interface for customer', type='string')
