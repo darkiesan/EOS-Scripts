@@ -53,7 +53,7 @@ for ip in iplist:
 # Create VLAN and SVI if needed
  response = myswitch.runCmds(1, ["configure", "vlan "+vlan] )
  if opts.ipaddress != "0.0.0.0":
-  response = myswitch.runCmds(1, ["configure", "interface vlan"+vlan, "ip address "+ipaddress, "vrf forwarding "+tenant] )
+  response = myswitch.runCmds(1, ["configure", "interface vlan"+vlan, "description "+tenant, "vrf forwarding "+tenant, "ip address virtual"+ipaddress, ] )
   
 # Create MAC VRF and IP VRF in BGP
  result = myswitch.runCmds(1, ["enable", "show ip bgp summary"] )
