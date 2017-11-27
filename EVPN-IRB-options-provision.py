@@ -16,6 +16,7 @@ op.add_option( '-r', '--routing-vni', dest='routingvni', action='store', help='V
 op.add_option( '-x', '--ip-address', dest='ipaddress', action='store', help='IP address for IRB/SVI if applicable', type='string', default="0.0.0.0")
 op.add_option( '-n', '--interface', dest='interface', action='store', help='Interface for customer', type='string')
 op.add_option( '-y', '--trunk', dest='trunk', action='store', help='Is interface trunk or access', type='string')
+op.add_option( '-o', '--irb-option', dest='irb', action='store', help='Use symmetric or asymmetric IRB model', type='string')
 opts, _ = op.parse_args()
 
 tenant = opts.tenant
@@ -32,6 +33,7 @@ if opts.ipaddress != "0.0.0.0":
 
 interface = opts.interface
 trunk = opts.trunk
+irboption = opt.irb
 
 for ip in iplist:
  myswitch = Server( '%s://%s:%s@%s/command-api' % ( METHOD, USER, PASS, ip ) )
@@ -61,4 +63,6 @@ for ip in iplist:
  router_ip = result[1]['interfaces']['Loopback0']['interfaceAddress'][0]['primaryIp']['address']
 
  response = myswitch.runCmds(1, ["configure", "router bgp "+str(asn), "vlan "+vlan, "rd "+router_ip+":"+vlan, "route-target both "+vlan+":"+vlan, "redistribute learned"] )
- response = myswitch.runCmds(1, ["configure", "router bgp "+str(asn), "vrf "+tenant, "route-target both "+routingvni+":"+routingvni, "redistribute connected" ])
+ 
+ if irboption == "symmetric" and opts.ipddress != "0.0.0.0": 
+  response = myswitch.runCmds(1, ["configure", "router bgp "+str(asn), "vrf "+tenant, "route-target both "+routingvni+":"+routingvni, "redistribute connected" ])
