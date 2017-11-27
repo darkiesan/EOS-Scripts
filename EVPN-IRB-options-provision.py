@@ -64,5 +64,5 @@ for ip in iplist:
 
  response = myswitch.runCmds(1, ["configure", "router bgp "+str(asn), "vlan "+vlan, "rd "+router_ip+":"+vlan, "route-target both "+vlan+":"+vlan, "redistribute learned"] )
  
- if irboption == "symmetric" and opts.ipddress != "0.0.0.0": 
+ if irboption == "symmetric" and opts.ipaddress != "0.0.0.0": 
   response = myswitch.runCmds(1, ["configure", "router bgp "+str(asn), "vrf "+tenant, "route-target both "+routingvni+":"+routingvni, "redistribute connected" ])
