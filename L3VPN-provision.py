@@ -42,4 +42,4 @@ for ip in iplist:
  result = myswitch.runCmds(1, ["enable", "show interfaces Loopback0"] )
  router_ip = result[1]['interfaces']['Loopback0']['interfaceAddress'][0]['primaryIp']['address']
 
- response = myswitch.runCmds(1, ["configure", "router bgp "+str(asn), "vrf "+tenant, "rd "+router_ip":"+vni, "route-target both "+vni+":"+vni, "redistribute connected", "router-id "+router_ip ])
+ response = myswitch.runCmds(1, ["configure", "router bgp "+str(asn), "vrf "+tenant, "rd "+router_ip+":"+vni, "route-target both "+vni+":"+vni, "redistribute connected", "router-id "+router_ip ])
