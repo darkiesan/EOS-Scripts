@@ -64,3 +64,18 @@ send_packet.py
 ==============
 
 Scapy example on howto send a packet.
+
+=============
+RouteTrack.sh
+=============
+
+Example of an onboard script checking connectivity and based on the result performs config
+actions on the switch.
+
+============
+ipaddress.py
+============
+
+eAPI exampel script for setting IP address on interfaces using onboard scripting or remote
+script host. The script takes as arguments IP to connect to, IP/Netmask to add and interface to
+add IP to.
