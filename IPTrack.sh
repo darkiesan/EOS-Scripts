@@ -1,3 +1,27 @@
+############################################################################
+#									   #
+# To use the script, uplaod it to an EOS device, place it in /mnt/flash.   #
+# In the script, change CHANGE_TO_MONITORED_IP to the IP address that will #
+# be tracked and monitored. Go to the FastCli command for ping success     #
+# and failure and replace:						   #
+# INSERT								   #
+# YOUR									   #
+# EOS									   #
+# COMMAND								   #
+# HERE									   #
+#									   #
+# with the approriate actions you want the script to do.		   #
+#									   #
+# Then start BASH on the EOS device and run: touch /mnt/flash/IPTrack.log  #
+# 									   #
+# Add following config via EOS CLI:					   #
+# daemon IPTrack							   #
+#    exec /mnt/flash/IPTrack.sh						   #
+#    no shutdown							   #
+#									   #
+# Now it is running!							   #
+############################################################################
+
 #!/bin/bash
 
 HOSTUP=Y
