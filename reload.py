@@ -21,7 +21,7 @@ opts, _ = op.parse_args()
 EAPI_USERNAME = opts.user
 EAPI_PASSWORD = opts.password
 EAPI_ENABLE_PASSWORD = ''
-EAPI_METHOD = 'https'
+EAPI_METHOD = 'http'
 
 
 #
