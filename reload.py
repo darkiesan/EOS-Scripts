@@ -38,4 +38,4 @@ iplist = hosts.split()
 for ip in iplist :
 
  switch = Server( '%s://%s:%s@%s/command-api' % ( EAPI_METHOD, EAPI_USERNAME, EAPI_PASSWORD, ip ) )
- response = switch.runCmds(1, ["reload"])
+ response = switch.runCmds(1, ["reload force"])
