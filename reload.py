@@ -11,8 +11,8 @@ import copy
 usage = 'usage: %prog [options]'
 op = optparse.OptionParser(usage=usage)
 op.add_option( '-u', '--user', dest='user', action='store', help='Username to use for switch login', type='string')
-op.add_option( '-m', '--password', dest='password', action='store', help='MAC address which will be searched for', type='string')
-op.add_option( '-i', '--ip', dest='hosts', action='store', help='list of host IP addresses, where to seek mac addresses', type='string')
+op.add_option( '-p', '--password', dest='password', action='store', help='Password to use for switch login', type='string')
+op.add_option( '-i', '--ip', dest='hosts', action='store', help='list of host IP addresses, where to send reload', type='string')
 opts, _ = op.parse_args()
 
 #
