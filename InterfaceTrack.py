@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 #
 # management api http-commands
-#   protocol unix-dsocket
+#   protocol unix-socket
 #
 # event-handler InterfaceTrack
 #   trigger on-intf Ethernet1 operstatus
@@ -10,7 +10,7 @@
 # ONE EVENT HANDLER PER INTERFACE TO MONITOR. THEY CAN ALL CALL SAME SCRIPT.
 #
 # PLEASE NOTE YOU NEED TO MANUALLY CHANGE MONITORED INTERFACES BELOW AND ALSO
-# CHANGE INTERFACE THAT WILL BE ALTERED IF THE ECENT IS TRIGGERED.
+# CHANGE INTERFACE THAT WILL BE ALTERED IF THE EVENT IS TRIGGERED.
 #
 
 from jsonrpclib import Server
