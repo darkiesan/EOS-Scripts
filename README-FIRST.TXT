@@ -79,3 +79,9 @@ ipaddress.py
 eAPI exampel script for setting IP address on interfaces using onboard scripting or remote
 script host. The script takes as arguments IP to connect to, IP/Netmask to add and interface to
 add IP to.
+
+============
+IntrfaceTrackpy
+============
+eAPI exampel script to run on board a switch that triggers on interface changes on uplinks.
+Based on result, downlink switch ports are shut or no shut.
