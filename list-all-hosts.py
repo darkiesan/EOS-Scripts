@@ -8,8 +8,8 @@ import copy
 #
 # User, passwords and method to connect to eAPI on switches
 #
-EAPI_USERNAME = 'myuser'
-EAPI_PASSWORD = 'mypass'
+EAPI_USERNAME = 'cvpadmin'
+EAPI_PASSWORD = 'pzkpw51B'
 EAPI_ENABLE_PASSWORD = ''
 EAPI_METHOD = 'http'
 
@@ -19,6 +19,7 @@ EAPI_METHOD = 'http'
 usage = 'usage: %prog [options]'
 op = optparse.OptionParser(usage=usage)
 op.add_option( '-i', '--ip', dest='hosts', action='store', help='list of host or IP addresses to find hosts to list', type='string')
+op.add_option( '-v', '--vrf', dest='vrf', action='store', help='Select vrf to search IP info in, if not specified the global table is searched', type='string', default="default")
 opts, _ = op.parse_args()
 
 #
@@ -27,6 +28,7 @@ opts, _ = op.parse_args()
 
 hosts = opts.hosts
 iplist = hosts.split()
+vrf = opts.vrf
 
 #
 # Itereate through the iplist, i.e. iterate through switches
@@ -36,24 +38,39 @@ iplist = hosts.split()
 for ip in iplist:
 
 	switch = Server( '%s://%s:%s@%s/command-api' % ( EAPI_METHOD, EAPI_USERNAME, EAPI_PASSWORD, ip ) )
-	response = switch.runCmds(1, ["show hostname", "show mac address-table"])
-
+	if vrf == "default":
+		response = switch.runCmds(1, ["show hostname", "show arp"])
+	else:
+		response = switch.runCmds(1, ["show hostname", "show arp vrf "+vrf])
 
 	hostname = response[0]["hostname"]
-	macs = response[1]["unicastTable"]["tableEntries"]
+	arps = response[1]["ipV4Neighbors"]
 
 	print "Switch: %s" % ( hostname )
 	print "=================================================================================="
 
-	for mac in macs:
-		switch = Server( '%s://%s:%s@%s/command-api' % ( EAPI_METHOD, EAPI_USERNAME, EAPI_PASSWORD, ip ) )
-		mac_address = mac["macAddress"]
-		vlan = mac["vlanId"]
-		interface = mac["interface"]
+	if arps != []:
+		for arp in arps:
+			vlanfound = 0
+			mac_address = arp["hwAddress"]
+			host_ip = arp["address"]
+			interface_list = arp["interface"].split(',')
+			for interface in interface_list:
+				if "Vlan" in interface:
+					vlan = interface
+					vlanfound = 1
+				else:
+					port = interface
 
-		response = switch.runCmds(1, ["show arp mac-address "+mac_address])
-		
-		if response[0]["ipV4Neighbors"]["hwAddress"] == mac_address:
-			host_ip = response[0]["ipV4Neighbors"]["address"]
-
-		print "IP: %s, MAC: %s, Vlan: %s, Port: %s" % ( host_ip , mac_address , vlan , interface )
+			if "Vxlan1" in interface:
+				print ""
+			else:
+				if vrf == "default" and vlanfound == 1:
+					print "IP: %s, MAC: %s, Vlan: %s, Port: %s" % ( host_ip , mac_address , vlan , interface )
+				if vrf != "default" and vlanfound == 1:
+					print "VRF: %s, IP: %s, MAC: %s, Vlan: %s, Port: %s" % ( vrf, host_ip , mac_address , vlan , interface )
+				if vrf == "default" and vlanfound == 0:
+					print "IP: %s, MAC: %s, Vlan: N/A routed port, Port: %s" % ( host_ip , mac_address , interface )
+				if vrf != "default" and vlanfound == 0:
+					print "VRF: %s, IP: %s, MAC: %s, Vlan: N/A routed port, Port: %s" % ( vrf, host_ip , mac_address , interface )
+				print ""
