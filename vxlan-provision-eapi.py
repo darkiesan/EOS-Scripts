@@ -29,4 +29,4 @@ for ip in iplist:
  response = myswitch.runCmds(1, ["configure", "vlan "+vlan] )
 
 # Configure interface vxlan1 with VNI for the VLAN
- response = myswitch.runCmds(1, ["configure", "interface vxlan1", "vxlan vlan "+vlan+" vni "+vxlan, "vxlan vrf "+tenant+" vni "+routingvni] )
+ response = myswitch.runCmds(1, ["configure", "interface vxlan1", "vxlan vlan "+vlan+" vni "+vxlan] )
