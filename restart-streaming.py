@@ -28,5 +28,5 @@ EAPI_METHOD = 'http'
 
 for ip in iplist:
 	switch = Server( '%s://%s:%s@%s/command-api' % ( EAPI_METHOD, username, password, ip ) )
-	response = switch.runCmds(1, ["enable", "daemon TerminAttr", "shutdown"])
-	response = switch.runCmds(1, ["enable", "daemon TerminAttr", "no shutdown"])
+	response = switch.runCmds(1, ["enable", "configure", "daemon TerminAttr", "shutdown"])
+	response = switch.runCmds(1, ["enable", "configure", "daemon TerminAttr", "no shutdown"])
