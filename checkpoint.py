@@ -44,5 +44,5 @@ user = opts.username
 password = opts.password
 
 switch = Server( '%s://%s:%s@%s/command-api' % ( 'http', user, password, ip ) )
-result = switch.runCmds(1, ['enable' , 'configuration checkpoint save'])
+result = switch.runCmds(1, ['enable' , 'copy running-config backup-config'])
 print result
