@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
-import jsonrpclib,argparse
+from jsonrpclib import Server
+import argparse
 
 #
 # Define command line options for argparse
