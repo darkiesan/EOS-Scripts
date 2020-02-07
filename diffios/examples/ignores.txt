@@ -1,0 +1,14 @@
+building configuration
+serial number
+crypto pki trustpoint
+crypto pki certificate
+processor board
+reload
+uptime
+current configuration
+mac address
+Template Version
+System restarted at
+banner login
+banner motd
+^end$

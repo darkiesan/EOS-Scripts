@@ -1,0 +1,27 @@
+language: python
+
+python:
+  - "2.7"
+  - "3.3"
+  - "3.4"
+  - "3.5"
+  - "3.6"
+  - "nightly"
+
+matrix:
+  fast_finish: true
+  allow_failures:
+    - python: "nightly"
+
+branches:
+  only:
+    - master
+    - develop
+
+install: pip install -r requirements.txt
+
+before_script: flake8 --exit-zero
+
+script: pytest
+
+after_success: coveralls
