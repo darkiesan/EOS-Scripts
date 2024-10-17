@@ -1,8 +1,9 @@
 {
     "jsonrpc": "2.0",
+    "method": "runCmds",
     "params": {
         "version": 1,
-        "runCmds": [ "sh ip int brief"],
+        "cmds": [ "sh ip int brief"],
         "format": "json",
         "timestamps": false,
         "autoComplete": true,
