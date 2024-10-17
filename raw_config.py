@@ -7,7 +7,7 @@ import requests
 url = "https://192.168.0.21/command-api"
 
 # Use the open() function to open the file you just created, "r" means read-only
-commands = open("eth3.json", "r")
+commands = open("shipint.jso", "r")
 
 # The requests method post does an HTTP post with HTTP AUTH_BASIC type credentials. 
 # Replace the aristaXXXX with your password. 

@@ -1,0 +1,15 @@
+{
+    "jsonrpc": "2.0",
+    "params": {
+        "version": 1,
+        "cmds": [ "sh ip int brief"],
+        "format": "json",
+        "timestamps": false,
+        "autoComplete": true,
+        "expandAliases": false,
+        "stopOnError": true,
+        "streaming": false,
+        "includeErrorDetail": false
+    },
+    "id": "EapiExplorter-1"
+}
